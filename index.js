@@ -25,6 +25,7 @@ todoForm.addEventListener(`submit`, function (evento) {
 
 function renderizarTodos(){
     const todosListSection = document.querySelector('#todos-list')
+    todosListSection.innerHTML= ''
 //createElement é o método responsável por gerar novos elementos html dentro do js a partir do nome tags
     for (let tarefa of todos) {
         const divCard = document.createElement('div')
@@ -41,6 +42,17 @@ function renderizarTodos(){
 
         const btnDelete = document.createElement('button')
         btnDelete.classList.add('btn', 'delete-todo')
+
+        //arrow functions smp são anônimas
+        btnDelete.addEventListener('click', () => {
+
+            // informa o índice, se n achar = -1
+            const index= todos.indexOf(tarefa)
+
+            //serve para excluir um valor a partir do seu índice
+            todos.splice(index, 1)
+            renderizarTodos()
+        })
 
         const spanIcon = document.createElement('span')
         spanIcon.classList.add('material-symbols-outlined')
